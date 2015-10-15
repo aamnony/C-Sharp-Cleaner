@@ -8,22 +8,12 @@ namespace CSharp_Cleaner
 {
     public partial class frmMain : Form
     {
-        #region Fields
-
         private static readonly string LOCAL_APP_DATA_PATH = Environment.SpecialFolder.LocalApplicationData.GetPath();
-
-        #endregion
-
-        #region Constructors
 
         public frmMain()
         {
             InitializeComponent();
         }
-
-        #endregion
-
-        #region Events
 
         private void btnRefreshList_Click(object sender, EventArgs e)
         {
@@ -65,10 +55,6 @@ namespace CSharp_Cleaner
             btnUninstall.Enabled = (lstApps.SelectedIndices.Count > 0);
         }
 
-        #endregion
-
-        #region Methods
-
         private static string GetFullPath(object path)
         {
             return String.Format("{0}\\{1}", LOCAL_APP_DATA_PATH, path);
@@ -79,14 +65,10 @@ namespace CSharp_Cleaner
             lstApps.Items.Clear();
             lstApps.Items.AddRange(Directory.EnumerateDirectories(LOCAL_APP_DATA_PATH).Select(Path.GetFileName).ToArray());
         }
-
-        #endregion
     }
 
     static class Extensions
     {
-        #region Methods
-
         internal static string GetPath(this Environment.SpecialFolder specialFolder)
         {
             return Environment.GetFolderPath(specialFolder);
@@ -101,7 +83,5 @@ namespace CSharp_Cleaner
             }
             return sb.ToString();
         }
-
-        #endregion
     }
 }
